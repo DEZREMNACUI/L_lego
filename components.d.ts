@@ -17,13 +17,18 @@ declare module 'vue' {
     ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    ColorPicker: typeof import('./src/components/ColorPicker.vue')['default']
     ComponentList: typeof import('./src/components/ComponentList.vue')['default']
     EditorWrapper: typeof import('./src/components/EditorWrapper.vue')['default']
+    ImageProcesser: typeof import('./src/components/ImageProcesser.vue')['default']
+    LImage: typeof import('./src/components/L-Image.vue')['default']
     LText: typeof import('./src/components/L-Text.vue')['default']
     PropsTable: typeof import('./src/components/PropsTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StyledUploader: typeof import('./src/components/StyledUploader.vue')['default']
     TemplateList: typeof import('./src/components/TemplateList.vue')['default']
+    Uploader: typeof import('./src/components/Uploader.vue')['default']
     UserProfile: typeof import('./src/components/UserProfile.vue')['default']
   }
 }

@@ -1,9 +1,10 @@
+import { h, VNode } from "vue";
 import { TextComponentProps } from "./defaultProps"
 export interface PropToForm {
   component: string;
   value?: string;
   subComponent?: string;
-  options?: { value: any, text: string }[]
+  options?: { value: any, text: string | VNode }[]
   extraProps?: { [key: string]: any };
   text?: string;
   initialTransform?: (v: any) => any,
@@ -15,6 +16,15 @@ export interface PropToForm {
 export type PropsToForms = {
   [P in keyof TextComponentProps]?: PropToForm
 }
+
+const fontFamilyArr = [{ text: '宋体', value: '"SimSun","STSong"' },
+{ text: '黑体', value: '"SimHei","STHeiti"' },
+{ text: '楷体', value: '"KaiTi","STKaiti"' },
+{ text: '仿宋', value: '"FangSong","STFangsong"' },];
+const fontFamilyOptions = fontFamilyArr.map((font) => ({
+  value: font.value,
+  text: h("span", { style: { fontFamily: font.value } }, font.text)
+}));
 
 export const mapPropsToForms: PropsToForms = {
   text: {
@@ -59,10 +69,11 @@ export const mapPropsToForms: PropsToForms = {
     text: '字体',
     options: [
       { text: "无", value: "" },
-      { text: '宋体', value: '"SimSun","STSong"' },
-      { text: '黑体', value: '"SimHei","STHeiti"' },
-      { text: '楷体', value: '"KaiTi","STKaiti"' },
-      { text: '仿宋', value: '"FangSong","STFangsong"' },
+      ...fontFamilyOptions
     ]
   },
+  color:{
+    component:"color-picker",
+    text:"字体颜色"
+  }
 }

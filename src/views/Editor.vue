@@ -8,9 +8,10 @@ import EditorWrapper from '../components/EditorWrapper.vue';
 import PropsTable from '../components/PropsTable.vue';
 import { TextComponentProps } from '../defaultProps';
 import { Input } from 'ant-design-vue';
+import LImage from '../components/L-Image.vue';
 const editorStore = useEditorStore();
 const { components, currentElement, getCurrentElement } = storeToRefs(editorStore);
-const addItem = (component: ComponentData) => {
+const addItem = (component: any) => {
   editorStore.components.push(component);
 }
 const deleteItem = (component: ComponentData) => {
@@ -32,7 +33,8 @@ const handleChange = (e: { key: any, value: any }) => {
 export default {
   components: {
     LText,
-    "a-input": Input
+    "a-input": Input,
+    LImage
   }
 }
 </script>

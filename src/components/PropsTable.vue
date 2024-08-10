@@ -2,8 +2,10 @@
 import { computed, defineComponent, PropType, VNode } from 'vue';
 import { TextComponentProps } from '../defaultProps';
 import { reduce } from 'lodash-es';
-import { mapPropsToForms, PropsToForms } from '../propsMap';
+import { mapPropsToForms } from '../propsMap';
 import { Input, InputNumber, RadioButton, RadioGroup, Select, SelectOption, Slider, Textarea } from 'ant-design-vue';
+import { RenderVnode } from './RenderVnode';
+import ColorPicker from './ColorPicker.vue';
 
 interface FormProps {
   component: string;
@@ -16,6 +18,7 @@ interface FormProps {
   eventName: string;
   events: { [key: string]: (e: any) => void };
 }
+
 
 const props = defineProps({
   props: {
@@ -64,7 +67,8 @@ export default defineComponent({
     "a-radio-group": RadioGroup,
     "a-radio-button": RadioButton,
     "a-select": Select,
-    "a-select-option": SelectOption
+    "a-select-option": SelectOption,
+    "color-picker":ColorPicker
   }
 })
 </script>
@@ -77,7 +81,8 @@ export default defineComponent({
           v-on="value.events">
           <template v-if="value?.options">
             <component :is="value.subComponent" v-for="(option, key) in value.options" :key="key" :value="option.value">
-              {{ option.text }}
+              <!-- {{ option.text }} -->
+              <render-vnode :v-node="option.text"></render-vnode>
             </component>
           </template>
         </component>

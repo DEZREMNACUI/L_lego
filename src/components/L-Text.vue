@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { textDefaultProps, textStylePropNames, transfotmToComponentProps } from '../defaultProps';
+import { textDefaultProps, textStylePropNames, transformToComponentProps } from '../defaultProps';
 import { useComponentCommon } from '../hooks/useComponentCommon';
 
 const props = defineProps({
-  ...transfotmToComponentProps(textDefaultProps),
+  ...transformToComponentProps(textDefaultProps),
   tag: { default: "div", type: String }
 });
 // const styleProps = computed(() => pick(props, textStylePropNames));

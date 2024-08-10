@@ -9,6 +9,14 @@ const { isLogin } = storeToRefs(userStore);
 
 const router = useRouter();
 
+const logoin = () => {
+  isLogin.value = true;
+  message.success("登录成功,2秒后跳转", 2);
+  setTimeout(() => {
+    router.push("/");
+  }, 2000);
+}
+
 const logout = () => {
   isLogin.value = false;
   message.success("退出登录成功,2秒后跳转首页", 2);
@@ -19,13 +27,13 @@ const logout = () => {
 </script>
 
 <template>
-  <router-link to="#" @click="isLogin=true" v-if="!isLogin">
-    <a-button type="primary" class="rounded-[2px]">登陆</a-button>
+  <router-link to="#" @click="logoin" v-if="!isLogin">
+    <div> <a-button type="primary" class="rounded-[2px]">登录</a-button></div>
   </router-link>
   <div v-else>
     <a-dropdown-button class="rounded-[2px]">
       <router-link to="/setting">user</router-link>
-      <template #overlay>
+      <template v-slot:overlay>
         <a-menu class="rounded-[2px]">
           <a-menu-item key="0">
             创建作品
@@ -33,7 +41,7 @@ const logout = () => {
           <a-menu-item key="1">
             <router-link to="/works">我的作品</router-link>
           </a-menu-item>
-          <a-menu-item key="2" @click="logout">
+          <a-menu-item key="2" @click="logout" class="logout">
             登出
           </a-menu-item>
         </a-menu>

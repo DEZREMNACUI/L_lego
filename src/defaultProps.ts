@@ -77,10 +77,18 @@ export const textDefaultProps: TextComponentProps = {
   backgroundColor: '',
   ...commonDefaultProps
 }
+export interface ImageComponentProps extends CommonComponentProps {
+  src: string;
+}
+
+export const imageDefaultProps: ImageComponentProps = {
+  src: "test.url",
+  ...commonDefaultProps
+}
 
 export const textStylePropNames = without(Object.keys(textDefaultProps), 'actionType', 'url', 'text');
-
-export const transfotmToComponentProps = (props: TextComponentProps) => {
+export const imageStylePropsNames = without(Object.keys(imageDefaultProps), "src");
+export const transformToComponentProps = <T extends {}>(props: T) => {
   return mapValues(props, (item) => {
     return { type: (item as any).constructor as StringConstructor, default: item }
   });
